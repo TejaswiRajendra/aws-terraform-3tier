@@ -1,5 +1,55 @@
 pipeline {
     agent any
+<<<<<<< HEAD
+
+    environment {
+        AWS_REGION = 'us-east-1'  // Change to your AWS region
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/TejaswiRajendra/aws-terraform-3tier.git'
+            }
+        }
+
+        stage('Init Terraform') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                    terraform init
+                    '''
+                }
+            }
+        }
+
+        stage('Plan Terraform') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                    terraform plan -out=tfplan
+                    '''
+                }
+            }
+        }
+
+        stage('Apply Terraform') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY')
+                ]) {
+                    sh '''
+                    terraform apply -auto-approve tfplan
+                    '''
+                }
+=======
     environment {
         AWS_REGION = 'us-east-1'
     }
@@ -22,6 +72,7 @@ pipeline {
         stage('Apply Terraform') {
             steps {
                 sh 'terraform apply -auto-approve tfplan'
+>>>>>>> fe0c913624508dc11edda5478ccd85e0e06a8d10
             }
         }
     }
