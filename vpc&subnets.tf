@@ -3,7 +3,7 @@ resource "aws_vpc" "my_vpc" {
   enable_dns_support = true
   enable_dns_hostnames = true
   tags = {
-    Name = "MyVPC"
+    Name = "VPC-TF"
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_subnet" "public_subnet_1" {
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = true
   tags = {
-    Name = "PublicSubnet1"
+    Name = "TF-PublicSubnet1"
   }
 }
 
@@ -23,7 +23,7 @@ resource "aws_subnet" "public_subnet_2" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
   tags = {
-    Name = "PublicSubnet2"
+    Name = "TF-PublicSubnet2"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_subnet" "private_subnet_1" {
   availability_zone       = "us-east-1a"
   map_public_ip_on_launch = false
   tags = {
-    Name = "PrivateSubnet1"
+    Name = "TF-PrivateSubnet1"
   }
 }
 
@@ -43,6 +43,6 @@ resource "aws_subnet" "private_subnet_2" {
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = false
   tags = {
-    Name = "PrivateSubnet2"
+    Name = "TF-PrivateSubnet2"
   }
 }

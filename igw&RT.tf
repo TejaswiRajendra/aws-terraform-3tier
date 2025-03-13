@@ -1,7 +1,7 @@
 resource "aws_internet_gateway" "my_igw" {
   vpc_id = aws_vpc.my_vpc.id
   tags = {
-    Name = "MyInternetGateway"
+    Name = "TF-InternetGateway"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_route_table" "public_rt" {
     gateway_id = aws_internet_gateway.my_igw.id
   }
   tags = {
-    Name = "PublicRouteTable"
+    Name = "TF-PublicRouteTable"
   }
 }
 
