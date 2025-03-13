@@ -1,7 +1,5 @@
 pipeline {
     agent any
-<<<<<<< HEAD
-
     environment {
         AWS_REGION = 'us-east-1'  // Change to your AWS region
     }
