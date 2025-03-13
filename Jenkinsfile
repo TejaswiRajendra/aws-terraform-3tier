@@ -1,5 +1,6 @@
 pipeline {
     agent any
+<<<<<<< HEAD
 
     environment {
         AWS_REGION = 'us-east-1'  // Change to your AWS region
@@ -48,6 +49,30 @@ pipeline {
                     terraform apply -auto-approve tfplan
                     '''
                 }
+=======
+    environment {
+        AWS_REGION = 'us-east-1'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/TejaswiRajendra/aws-terraform-3tier.git'
+            }
+        }
+        stage('Init Terraform') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('Plan Terraform') {
+            steps {
+                sh 'terraform plan -out=tfplan'
+            }
+        }
+        stage('Apply Terraform') {
+            steps {
+                sh 'terraform apply -auto-approve tfplan'
+>>>>>>> fe0c913624508dc11edda5478ccd85e0e06a8d10
             }
         }
     }
